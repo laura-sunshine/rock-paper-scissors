@@ -24,34 +24,42 @@ function playRound(playerSelection, computerSelection) {
                 return 1;
             }
             if (playerSelectionLowercase == "paper") {
-                return "You lose, scissors beats paper"            
+                console.log("You lose, scissors beats paper");
+                return -1;             
             }
             if (playerSelectionLowercase == "scissors") {
-                return "You draw!"
+                console.log("You draw");
+                return 0;
             }
 
         }
-        if (computerSelection == "Rock") {
+        else if (computerSelection == "Rock") {
             if (playerSelectionLowercase == "rock") {
-                return "You draw";
+                console.log("You draw");
+                return 0;
             }
             if (playerSelectionLowercase == "paper") {
-                return "You win! Paper beats rock"            
+                console.log("You win! Paper beats rock");
+                return 1;          
             }
             if (playerSelectionLowercase == "scissors") {
-                return "You lose! Rock beats scissors"
+                console.log("You lose, rock beats scissors");
+                return -1;  
             }
 
         }
-        if (computerSelection == "Paper") {
+        else if (computerSelection == "Paper") {
             if (playerSelectionLowercase == "rock") {
-                return "You lose! Paper beats rock";
+                console.log("You lose, paper beats rock");
+                return -1; 
             }
             if (playerSelectionLowercase == "paper") {
-                return "You draw"            
+                console.log("You draw");
+                return 0;           
             }
             if (playerSelectionLowercase == "scissors") {
-                return "You win! Scissors beats paper"
+                console.log("You win! Scissors beat paper");
+                return 1;  
             }
 
         }
@@ -61,8 +69,6 @@ function playRound(playerSelection, computerSelection) {
   
 }
 
-let playerSelection = "rock";
-let computerSelection = computerPlay(myValues);
 //console.log(playRound(playerSelection, computerSelection))
 game();
 
@@ -76,13 +82,14 @@ function game()  {
     for (let i = 0; i < 5; i++){
         // Get new random computer selection
         computerSelection = computerPlay(myValues);
+        playerSelection = window.prompt("Type rock, paper or scissors into the box");
         //get the result, should be either 1 (win), 0 (draw), -1 (loss). playRound will also log out this individual round result
         let result = playRound(playerSelection, computerSelection);
         //check what the result was and act on it
         //if we won
         if(result == 1){
             //increment the wins tracker
-            wins = wins++;
+            wins++;
             
         }
         //if we draw
@@ -92,16 +99,23 @@ function game()  {
         //if we lose
         if(result == -1){
             //increment the loss tracker
-            losses = losses++;
+            losses++;
             
         }
+        
     }
+    //print out the results, we now have "wins" and "losses" variables with correct numbers
+    if (wins > losses){
+        console.log("You win overall")
+    }
+    else if (losses > wins){
+        console.log("You lose overall")
+    }
+    else {
+        console.log("No winner")
+    }
+    console.log("Wins " + wins , "Losses " + losses)
 
-    //print out the results, we now have "wins" and "losses" variabls with correct numbers
+    
+
 }
-
-// function game(playRound) {
-//     for (let i=0; i<5; 1++) {
-
-//     }
-// }
